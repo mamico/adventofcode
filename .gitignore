@@ -2,3 +2,6 @@ zig-cache
 zig-out
 *.swp
 target/
+input.txt
+input
+input_test
