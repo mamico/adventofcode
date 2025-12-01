@@ -30,7 +30,6 @@ fn search_x_mas(matrix: &Vec<Vec<char>>, i: usize, j: usize) -> bool {
 
 }
 
-
 fn main() {
     let input_path = std::env::args().nth(1).expect("no path given");
     let mut matrix: Vec<Vec<char>> = Vec::new();
