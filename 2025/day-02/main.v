@@ -18,22 +18,13 @@ fn invalid_2(b i64, e i64) ([]i64){
 	mut r := []i64{}
 	for i in  b  .. (e + 1) {
 		s := "${i}"
-		mut invalid := false
 		for j in 1..s.len/2 + 1 {
 			if s.len % j == 0 {
-				count := s.len / j
-				mut jj := []int{}
-				for it in 0..count {
-					jj << it
-				}
-				invalid = jj.map(s[it*j..it*j+j]).all(it == s[0..j]) 
-				if invalid {
+				if s[0..j].repeat(s.len / j) == s {
+					r << i
 					break
 				}
 			}
-		}
-		if invalid {
-			r << i
 		}
 	}
 	return r
