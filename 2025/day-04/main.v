@@ -1,9 +1,5 @@
 module main
 import os
-// import strconv
-// import arrays
-// import math.stats
-
 
 fn main() {
 	// PART 1
