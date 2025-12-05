@@ -50,9 +50,8 @@ fn main() {
 			}
 		}
 		ranges.sort(a.start < b.start)
-		mut start := ranges[0].start
 		mut end := ranges[0].end
-		mut total := end - start + 1
+		mut total := ranges[0].end - ranges[0].start + 1
 		for i in 1..ranges.len {
 			if ranges[i].start <= end {
 				if ranges[i].end > end {
@@ -62,7 +61,6 @@ fn main() {
 				continue
 			}
 			total += ranges[i].end - ranges[i].start + 1
-			start = ranges[i].start
 			end = ranges[i].end
 		}
 		println('Part 2 - ${total}')
