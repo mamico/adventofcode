@@ -10,21 +10,16 @@ fn main() {
 		lines := os.read_lines(os.args[1])!
 		ops := lines[lines.len-1].split(' ').filter(it != '')
 		mut values := lines[0].split(' ').filter(it != '').map(strconv.atoi64(it)!)
-		// println("${lines[0]} ${cols}")
 		for line in lines[1..lines.len-1].map(it.split(' ').filter(it != '').map(strconv.atoi64(it)!)) {
-			// println("line: ${line}")
 			for i in 0..values.len {
 				if ops[i] == "*" {
 					values[i] *= line[i]
 				}
 				else {
-					// println("[${i}] ${cols[i]} + ${line[i]} = ${cols[i] + line[i]}")
 					values[i] += line[i]
 				}
 			}
-			// println(">> cols: ${cols}")
 		}
-		// println("${cols}")
 		part1 := arrays.sum(values)!
 		println("PART1 ${part1}")
 	}
