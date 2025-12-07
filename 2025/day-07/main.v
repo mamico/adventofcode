@@ -3,8 +3,8 @@ module main
 import os
 import datatypes
 
-const split = "^"[0]
-const start = "S"[0]
+const split = '^'[0]
+const start = 'S'[0]
 
 fn main() {
 	lines := os.read_lines(os.args[1])!.map(it.bytes())
@@ -35,28 +35,26 @@ fn main() {
 	// PART 2
 	{
 		pos := lines[0].index(start)
-		mut cache := map[string](i64)
+		mut cache := map[int]i64{}
 		part2 := timelines(pos, lines[1..lines.len], mut cache)
-		println("PART2 ${part2}")
+		println('PART2 ${part2}')
 	}
 }
 
-fn timelines(p int, lines [][](u8), mut cache map[string]i64) i64 {
-	key := '${p}-${lines.len}'
-    if key in cache {
-        return cache[key]
-    }
+fn timelines(p int, lines [][]u8, mut cache map[int]i64) i64 {
+	key := lines.len * lines[0].len + p
+	if key in cache {
+		return cache[key]
+	}
 	mut result := i64(0)
-	if p <0 || p >= lines[0].len {
+	if p < 0 || p >= lines[0].len {
 		result = 0
-	}
-	else if lines.len == 1 {
+	} else if lines.len == 1 {
 		result = 1
-	}
-	else if lines[0][p] == split {
-		result = timelines(p-1, lines[1..lines.len], mut cache) + timelines(p+1, lines[1..lines.len], mut cache)
-	}
-	else {
+	} else if lines[0][p] == split {
+		result = timelines(p - 1, lines[1..lines.len], mut cache) + timelines(p +
+			1, lines[1..lines.len], mut cache)
+	} else {
 		result = timelines(p, lines[1..lines.len], mut cache)
 	}
 	cache[key] = result
